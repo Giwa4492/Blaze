@@ -52,7 +52,9 @@ impl AppParameters {
                     proposal_pass_threshold,
                     proposal_slash_threshold,
                 },
-            fee_params: FeeParameters {},
+            fee_params: FeeParameters {
+                fixed_gas_prices: _,
+            },
             distributions_params:
                 DistributionsParameters {
                     staking_issuance_per_block: _,
@@ -135,7 +137,9 @@ impl AppParameters {
                     proposal_pass_threshold,
                     proposal_slash_threshold,
                 },
-            fee_params: FeeParameters {},
+            fee_params: FeeParameters {
+                fixed_gas_prices: _,
+            },
             distributions_params:
                 DistributionsParameters {
                     staking_issuance_per_block: _,

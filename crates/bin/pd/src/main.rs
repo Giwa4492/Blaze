@@ -390,6 +390,7 @@ async fn main() -> anyhow::Result<()> {
                     chain::v1alpha1::query_service_server::QueryServiceServer as ChainQueryServiceServer,
                     compact_block::v1alpha1::query_service_server::QueryServiceServer as CompactBlockQueryServiceServer,
                     dex::v1alpha1::query_service_server::QueryServiceServer as DexQueryServiceServer,
+                    fee::v1alpha1::query_service_server::QueryServiceServer as FeeQueryServiceServer,
                     governance::v1alpha1::query_service_server::QueryServiceServer as GovernanceQueryServiceServer,
                     sct::v1alpha1::query_service_server::QueryServiceServer as SctQueryServiceServer,
                     shielded_pool::v1alpha1::query_service_server::QueryServiceServer as ShieldedPoolQueryServiceServer,
@@ -403,6 +404,7 @@ async fn main() -> anyhow::Result<()> {
             use penumbra_chain::component::rpc::Server as ChainServer;
             use penumbra_compact_block::component::rpc::Server as CompactBlockServer;
             use penumbra_dex::component::rpc::Server as DexServer;
+            use penumbra_fee::component::rpc::Server as FeeServer;
             use penumbra_governance::component::rpc::Server as GovernanceServer;
             use penumbra_sct::component::rpc::Server as SctServer;
             use penumbra_shielded_pool::component::rpc::Server as ShieldedPoolServer;
@@ -449,6 +451,9 @@ async fn main() -> anyhow::Result<()> {
                     CompactBlockServer::new(storage.clone()),
                 )))
                 .add_service(we(DexQueryServiceServer::new(DexServer::new(
+                    storage.clone(),
+                ))))
+                .add_service(we(FeeQueryServiceServer::new(FeeServer::new(
                     storage.clone(),
                 ))))
                 .add_service(we(GovernanceQueryServiceServer::new(
